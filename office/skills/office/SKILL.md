@@ -19,16 +19,19 @@ or with a script, and never install anything: everything below is already there.
 3. **Read what is there before changing it:** `officecli view <file> outline`, `view
    <file> text`, `get <file> <path> --json`, `query <file> <selector>`.
 4. **Check the result:** `officecli validate <file>` and `officecli view <file> issues`.
-   Then read it back (`view <file> text`, `view <file> outline`, `view <file> html`) and
-   fix what is off before you hand the file over.
+   Then look at it: `officecli view <file> screenshot -o check.png` renders the pages
+   (a slide per image for `.pptx`, `--grid 3` for an overview); read the PNG. Fix what
+   is off before you hand the file over.
 5. **Finish with `officecli close <file>`**, then send it with {{mcp:send_file}}.
+6. **A PDF:** `office-pdf <file> [-o out.pdf]`. It prints OfficeCLI's HTML preview with
+   the headless browser: right for sharing and reading, not a print-exact copy of what
+   Word or PowerPoint would export. Say so when the layout must be exact.
 
 Paths are 1-based (`'/body/p[3]'` is the third paragraph); quote them in the shell.
 
 ## Not available here
 
-- `officecli view <file> screenshot` and `view <file> pdf`: there is no browser here, nor
-  an exporter plugin. Say so when asked for an image or a PDF of a document.
+- `officecli view <file> pdf` and its exporter plugins: use `office-pdf` instead.
 - `watch`: it serves a page on this machine that nobody can open.
 - `officecli install`, `officecli mcp …`, updates: the binary is pinned by the admin.
 

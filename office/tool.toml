@@ -1,13 +1,15 @@
 # office: Word, Excel and PowerPoint with OfficeCLI 1.0.158, its Linux build checked by the
-# sha256 below (from the release's SHA256SUMS).
-summary = "Word, Excel and PowerPoint files created, read, checked and edited with OfficeCLI 1.0.158"
-version = "1.0.0"
+# sha256 below (from the release's SHA256SUMS); Chrome Headless Shell 155.0.8059.12 (as
+# Playwright publishes it) for its screenshots and office-pdf, checked the same way.
+summary = "Word, Excel and PowerPoint files created, read, edited, rendered and exported to PDF with OfficeCLI 1.0.158"
+version = "1.1.0"
 instructions = """
 For .docx, .xlsx and .pptx files use `officecli`, already installed; never write them by
 hand or with a script, and never install anything. Load the `office` skill first."""
-bin = ["bin/officecli"]
+# google-chrome: the headless Chrome OfficeCLI looks for on PATH, for screenshots.
+bin = ["bin/officecli", "bin/office-pdf", "bin/google-chrome"]
 # Every command writes only the file it names, in the project's folder.
-rules = ["officecli *"]
+rules = ["officecli *", "office-pdf *"]
 
 [env]
 # No update checks: the binary is pinned and hashed, and a run has no network.
@@ -18,7 +20,8 @@ DOTNET_SYSTEM_GLOBALIZATION_INVARIANT = "1"
 OFFICECLI_RESIDENT_FLUSH = "each"
 
 [package]
-smoke = ["bin/officecli", "--version"]
+# officecli runs, and the host has the libraries Chrome needs.
+smoke = ["/bin/sh", "/opt/addins/office/test/start.sh"]
 
 [[package.file]]
 url = "https://github.com/iOfficeAI/OfficeCLI/releases/download/v1.0.158/officecli-linux-x64"
@@ -33,3 +36,17 @@ sha256 = "b1d5e74d93a8471a47b037cc7774ac29c559940e226f99b9fdf788966cc395b8"
 arch = "aarch64"
 unpack = "none"
 to = "bin/officecli"
+
+[[package.file]]
+url = "https://cdn.playwright.dev/builds/cft/155.0.8059.12/linux64/chrome-headless-shell-linux64.zip"
+sha256 = "aeb9283943ef1f21864ea42ad1201b89f5bcf6a84c3e3d0d641529d251914bed"
+arch = "x86_64"
+unpack = "zip"
+to = "chromium"
+
+[[package.file]]
+url = "https://cdn.playwright.dev/builds/cft/155.0.8059.12/linux-arm64/chrome-headless-shell-linux-arm64.zip"
+sha256 = "a06e379e7ffa1713894292eb6ff8e01f4fe603669bb100d857437d965f646c03"
+arch = "aarch64"
+unpack = "zip"
+to = "chromium"
