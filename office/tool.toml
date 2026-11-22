@@ -1,0 +1,35 @@
+# office: Word, Excel and PowerPoint with OfficeCLI 1.0.158, its Linux build checked by the
+# sha256 below (from the release's SHA256SUMS).
+summary = "Word, Excel and PowerPoint files created, read, checked and edited with OfficeCLI 1.0.158"
+version = "1.0.0"
+instructions = """
+For .docx, .xlsx and .pptx files use `officecli`, already installed; never write them by
+hand or with a script, and never install anything. Load the `office` skill first."""
+bin = ["bin/officecli"]
+# Every command writes only the file it names, in the project's folder.
+rules = ["officecli *"]
+
+[env]
+# No update checks: the binary is pinned and hashed, and a run has no network.
+OFFICECLI_SKIP_UPDATE = "1"
+# It needs no ICU (a host may have none).
+DOTNET_SYSTEM_GLOBALIZATION_INVARIANT = "1"
+# Every command writes to disk: a resident the shell stops loses nothing.
+OFFICECLI_RESIDENT_FLUSH = "each"
+
+[package]
+smoke = ["bin/officecli", "--version"]
+
+[[package.file]]
+url = "https://github.com/iOfficeAI/OfficeCLI/releases/download/v1.0.158/officecli-linux-x64"
+sha256 = "9ee41d5558caea7bcd5aab1b3e76b2bd70f0535f09cf65dda3668130510cc719"
+arch = "x86_64"
+unpack = "none"
+to = "bin/officecli"
+
+[[package.file]]
+url = "https://github.com/iOfficeAI/OfficeCLI/releases/download/v1.0.158/officecli-linux-arm64"
+sha256 = "b1d5e74d93a8471a47b037cc7774ac29c559940e226f99b9fdf788966cc395b8"
+arch = "aarch64"
+unpack = "none"
+to = "bin/officecli"

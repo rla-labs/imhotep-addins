@@ -7,6 +7,8 @@ installed once by an admin and turned on per project.
 | Addin | What a project's agent can do with it | Programs | Size |
 |---|---|---|---|
 | [**pdf**](pdf/) | Read a PDF's text and pages, make a PDF from HTML or Markdown, merge, split, keep or delete pages, rotate, render pages to PNG, compress, protect with a password; anything else with qpdf | `pdftool`, `qpdf` | ~30 MB |
+| [**media**](media/) | Cut, join, convert, compress and inspect audio and video; extract audio, thumbnails, GIFs; burn subtitles | `ffmpeg`, `ffprobe` | ~155 MB |
+| [**office**](office/) | Create, read, check and edit Word, Excel and PowerPoint files | `officecli` | ~35 MB |
 
 ## Install
 

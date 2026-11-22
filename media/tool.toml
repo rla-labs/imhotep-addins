@@ -1,0 +1,41 @@
+# media: audio and video with static ffmpeg and ffprobe 7.0.2 (John Van Sickle's builds, as
+# eugeneware/ffmpeg-static b6.1.1 publishes them), checked by the sha256 below.
+summary = "Audio and video cut, joined, converted, compressed and inspected with ffmpeg and ffprobe 7.0.2 (static builds, GPL)"
+version = "1.0.0"
+instructions = """
+For audio and video use `ffmpeg` and `ffprobe`, already installed; never install them.
+Load the `media` skill first. Every output goes in your folder, never in /tmp."""
+bin = ["bin/ffmpeg", "bin/ffprobe"]
+# Probing only reads; ffmpeg writes files, so it keeps asking unless the project allows it.
+rules = ["ffprobe *"]
+
+[package]
+smoke = ["bin/ffmpeg", "-version"]
+
+[[package.file]]
+url = "https://github.com/eugeneware/ffmpeg-static/releases/download/b6.1.1/ffmpeg-linux-x64.gz"
+sha256 = "bfe8a8fc511530457b528c48d77b5737527b504a3797a9bc4866aeca69c2dffa"
+arch = "x86_64"
+unpack = "gz"
+to = "bin/ffmpeg"
+
+[[package.file]]
+url = "https://github.com/eugeneware/ffmpeg-static/releases/download/b6.1.1/ffprobe-linux-x64.gz"
+sha256 = "25d9b6ccb05e3d9de9e04e31e2506d8dd7f9f0418981965ac6df12e8d3afd067"
+arch = "x86_64"
+unpack = "gz"
+to = "bin/ffprobe"
+
+[[package.file]]
+url = "https://github.com/eugeneware/ffmpeg-static/releases/download/b6.1.1/ffmpeg-linux-arm64.gz"
+sha256 = "754a678672298bc68156adff58aa7385a592c2b30b1d0ae8750c45c915c4bac0"
+arch = "aarch64"
+unpack = "gz"
+to = "bin/ffmpeg"
+
+[[package.file]]
+url = "https://github.com/eugeneware/ffmpeg-static/releases/download/b6.1.1/ffprobe-linux-arm64.gz"
+sha256 = "2ab6aba60ee84412dff9188720703376cb4e7aaf7e0b5e43aa8249f2acae5bf8"
+arch = "aarch64"
+unpack = "gz"
+to = "bin/ffprobe"
