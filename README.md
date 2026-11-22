@@ -52,4 +52,6 @@ needs (wrappers in `bin/`). What is large is downloaded at install, not kept her
 
 - The programs an addin downloads are under their own licenses; each addin's README lists
   them, and their license files come with what is downloaded.
-- Everything in this repository is under [`LICENSE.md`](LICENSE.md).
+- Everything else in this repository is under [`LICENSE.md`](LICENSE.md), the Sustainable
+  Use License; where a part of it is a fork of, or is taken from, a project under another
+  license, that license prevails for that part.

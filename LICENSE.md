@@ -4,15 +4,26 @@ Copyright (c) 2026 Lefter Adrian-Romeo
 
 Portions of this software are licensed as follows:
 
-- Argus Agent is available under the "Sustainable Use License" as defined below.
-- All third party components incorporated into Argus Agent, such as DeepSeek Harness and
-  Cordis, are licensed under the original license provided by the owner of the
-  applicable component.
+- Imhotep Addins is available under the "Sustainable Use License" as defined below.
+- All third party components that an addin incorporates, downloads or installs (such as
+  qpdf, PDFium and ironpress for the pdf addin), and any part of this repository that is a
+  fork of, or is taken from, another project, are licensed under the original license
+  provided by the owner of the applicable component or project.
 
-In plain words, and without changing the terms below: you may run Argus Agent for
+### Precedence of other licenses
+
+Where a component, a fork, or a tool taken from another project is under a license other
+than the Sustainable Use License, that license prevails for that component, fork or tool,
+and these terms do not apply to it to the extent they conflict with that license. Nothing
+in these terms restricts any right that such a license grants, nor changes its terms, its
+copyright or its notices. Each addin's README names the licenses of what it installs, and
+their license files come with what is downloaded.
+
+In plain words, and without changing the terms below: you may use Imhotep Addins for
 yourself or for your own company, including for commercial work. You may not offer it to
 others as a hosted or managed service, and you may not sell, or distribute for a
-commercial purpose, the software or a modified version of it.
+commercial purpose, the software or a modified version of it. The open source tools an
+addin installs stay under their own licenses, whatever these terms say.
 
 ## Sustainable Use License
 
@@ -73,8 +84,9 @@ any kind of legal claim.
 
 The “licensor” is Lefter Adrian-Romeo, the entity offering these terms.
 
-The “software” is Argus Agent, the software the licensor makes available under these terms, including any
-portion of it.
+The “software” is Imhotep Addins, the contents of this repository that the licensor makes available under
+these terms, including any portion of it, but excluding the components, forks and tools described under
+“Precedence of other licenses”.
 
 “You” refers to the individual or entity agreeing to these terms.
 
