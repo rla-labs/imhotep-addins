@@ -1,0 +1,23 @@
+# images: ImageMagick 7.1.2-34, its official Linux build (the gcc x86_64 AppImage) checked
+# by the sha256 below, unpacked at install without FUSE. x64 only: ImageMagick publishes
+# no Linux arm64 build.
+summary = "Images resized, cropped, converted, compressed and watermarked with ImageMagick 7.1.2 (x64)"
+version = "1.0.0"
+instructions = """
+For images (resize, crop, convert, compress, watermark, contact sheets) use `magick`
+(ImageMagick 7), already installed; never install another tool. Load the `images` skill
+first. Write every output in your folder, never over the original."""
+bin = ["bin/magick"]
+# Identifying only reads; every other command writes a file and keeps asking.
+rules = ["magick identify *"]
+
+[package]
+setup = [["/bin/sh", "/project/setup.sh"]]
+# The host has the libraries it takes from it, and magick runs.
+smoke = ["/bin/sh", "/opt/addins/images/test/start.sh"]
+
+[[package.file]]
+url = "https://github.com/ImageMagick/ImageMagick/releases/download/7.1.2-34/ImageMagick-7.1.2-34-gcc-x86_64.AppImage"
+sha256 = "6e9edfd35d5f30b57c27533afe003d6085faaf8607b207426f398d11751acf93"
+arch = "x86_64"
+to = "im.AppImage"

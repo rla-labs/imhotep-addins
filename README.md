@@ -9,6 +9,8 @@ installed once by an admin and turned on per project.
 | [**pdf**](pdf/) | Read a PDF's text and pages, make a PDF from HTML or Markdown, merge, split, keep or delete pages, rotate, render pages to PNG, compress, protect with a password; anything else with qpdf | `pdftool`, `qpdf` | ~30 MB |
 | [**media**](media/) | Cut, join, convert, compress and inspect audio and video; extract audio, thumbnails, GIFs; burn subtitles | `ffmpeg`, `ffprobe` | ~155 MB |
 | [**office**](office/) | Create, read, check, edit and render Word, Excel and PowerPoint files; export them to PDF | `officecli`, `office-pdf` | ~305 MB |
+| [**images**](images/) | Resize, crop, convert, compress and watermark images; contact sheets (x64 only) | `magick` | ~77 MB |
+| [**diagrams**](diagrams/) | Mermaid diagrams to SVG, PNG or text, in 15 themes, with no browser | `render-mermaid`, `batch-mermaid`, `list-mermaid-themes` | ~140 MB |
 
 ## Install
 
