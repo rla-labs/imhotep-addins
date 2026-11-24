@@ -11,6 +11,7 @@ installed once by an admin and turned on per project.
 | [**office**](office/) | Create, read, check, edit and render Word, Excel and PowerPoint files; export them to PDF | `officecli`, `office-pdf` | ~305 MB |
 | [**images**](images/) | Resize, crop, convert, compress and watermark images; contact sheets (x64 only) | `magick` | ~77 MB |
 | [**diagrams**](diagrams/) | Mermaid diagrams to SVG, PNG or text, in 15 themes, with no browser | `render-mermaid`, `batch-mermaid`, `list-mermaid-themes` | ~140 MB |
+| [**browser**](browser/) | Open pages built by JavaScript, click, fill forms, read them, take screenshots and save them as PDF; the public internet only, for its server alone | Playwright MCP's `browser__browser_…` tools | ~300 MB |
 
 ## Install
 
@@ -45,6 +46,10 @@ Nothing updates by itself.
 - **Per project, read-only.** Only a project that turns an addin on sees it, at
   `/opt/addins/<name>`, read-only, last on the PATH (it never stands in for a system
   program). Its programs run in the run's sandbox like any other command, with no network.
+- **Network only where declared.** An addin whose MCP server needs the internet (`browser`)
+  says `network = "public"`: that server alone, never the agent, reaches the public internet
+  through Imhotep's proxy, never the host's network or a private address; the web asks before
+  turning it on for a project.
 
 ## Writing one
 

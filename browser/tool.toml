@@ -1,0 +1,81 @@
+# browser: a headless Chromium the agent drives through Playwright MCP's tools. Every file is
+# fixed here by its sha256: Node 22 (nodejs.org's SHASUMS256.txt), Playwright MCP 0.0.83 and
+# the two Playwright packages it needs (each checked against the lockfile's sha512 when they
+# were pinned; no install script), and Chrome Headless Shell 155.0.8059.12, the build
+# Playwright 1.64.0-alpha expects, from Playwright's CDN.
+summary = "A headless Chromium the agent drives with Playwright MCP, on the public internet only"
+version = "1.0.0"
+instructions = """
+You have a headless browser (its tools are browser__browser_…). Use it for pages a plain
+fetch cannot read: ones built by JavaScript, or behind clicks and forms. Load the `browser`
+skill first. It reaches the public internet only."""
+# Screenshots and PDFs go to the project's folder.
+project = "rw"
+
+[server]
+command = ["/opt/agent/bin/browser-mcp"]
+# Its server alone, never the agent: through Imhotep's proxy, HTTPS and HTTP to public
+# addresses only.
+network = "public"
+timeout_s = 120
+access = "ask"
+# Reading the page runs unasked; what acts on it asks; code in the page and uploads from the
+# project are refused. A project changes any of them with its exceptions.
+tools = { browser_snapshot = "allow", browser_take_screenshot = "allow", browser_console_messages = "allow", browser_network_requests = "allow", browser_network_request = "allow", browser_find = "allow", browser_wait_for = "allow", browser_evaluate = "deny", browser_run_code_unsafe = "deny", browser_file_upload = "deny" }
+
+[package]
+setup = [["/bin/sh", "/project/setup.sh"]]
+smoke = ["/bin/sh", "/opt/addins/browser/test/start.sh"]
+
+[[package.file]]
+url = "https://nodejs.org/dist/v22.23.4/node-v22.23.4-linux-x64.tar.xz"
+sha256 = "1805bcd35e6815559bd2eb97db438d3fdb0eb3a5e6a977b7c1badca76337e9ce"
+arch = "x86_64"
+unpack = "tar"
+strip = 1
+to = "node"
+
+[[package.file]]
+url = "https://nodejs.org/dist/v22.23.4/node-v22.23.4-linux-arm64.tar.xz"
+sha256 = "6287aa46b6c375d816e63ae66d024fbbfd70404825aabdfdf898a970871d2f4b"
+arch = "aarch64"
+unpack = "tar"
+strip = 1
+to = "node"
+
+[[package.file]]
+url = "https://registry.npmjs.org/@playwright/mcp/-/mcp-0.0.83.tgz"
+sha256 = "f0014a13361b1ee2d8607a4e187868ab9a6e8ac637dbcd66e4af43f738d0c8cb"
+unpack = "tar"
+strip = 1
+to = "app/node_modules/@playwright/mcp"
+
+[[package.file]]
+url = "https://registry.npmjs.org/playwright/-/playwright-1.64.0-alpha-1790635538000.tgz"
+sha256 = "436022a21e7a7c34436970fe04ab3fccae87a5045d3ed5af3f66c6e3ba377ee8"
+unpack = "tar"
+strip = 1
+to = "app/node_modules/playwright"
+
+[[package.file]]
+url = "https://registry.npmjs.org/playwright-core/-/playwright-core-1.64.0-alpha-1790635538000.tgz"
+sha256 = "54ad1d38174d6ef56d1f165e52547ece8e6c24b865f2a072d9ebaacfbad1ca47"
+unpack = "tar"
+strip = 1
+to = "app/node_modules/playwright-core"
+
+[[package.file]]
+url = "https://cdn.playwright.dev/builds/cft/155.0.8059.12/linux64/chrome-headless-shell-linux64.zip"
+sha256 = "aeb9283943ef1f21864ea42ad1201b89f5bcf6a84c3e3d0d641529d251914bed"
+arch = "x86_64"
+unpack = "zip"
+strip = 1
+to = "chromium"
+
+[[package.file]]
+url = "https://cdn.playwright.dev/builds/cft/155.0.8059.12/linux-arm64/chrome-headless-shell-linux-arm64.zip"
+sha256 = "a06e379e7ffa1713894292eb6ff8e01f4fe603669bb100d857437d965f646c03"
+arch = "aarch64"
+unpack = "zip"
+strip = 1
+to = "chromium"

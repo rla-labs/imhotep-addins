@@ -1,0 +1,13 @@
+#!/bin/sh
+# Playwright MCP over stdio, driving the headless shell in memory (--isolated: no cookies or
+# logins kept). Screenshots and PDFs go to its working directory, the project's folder.
+# --no-sandbox: Chromium's own sandbox needs namespaces Imhotep's sandbox does not give; that
+# sandbox confines it. Every request, loopback included, goes through Imhotep's proxy
+# (HTTPS_PROXY, set for this server alone): the public internet only.
+d=$(dirname "$(readlink -f "$0")")/..
+set -- --headless --isolated --no-sandbox --executable-path "$d/chromium/chrome-headless-shell" \
+  --output-dir . --caps pdf --config "$d/config.json"
+if [ -n "${HTTPS_PROXY:-}" ]; then
+  set -- "$@" --proxy-server "$HTTPS_PROXY" --proxy-bypass '<-loopback>'
+fi
+exec "$d/node/bin/node" "$d/app/node_modules/@playwright/mcp/cli.js" "$@"
