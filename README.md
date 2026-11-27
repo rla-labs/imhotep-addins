@@ -12,6 +12,7 @@ installed once by an admin and turned on per project.
 | [**images**](images/) | Resize, crop, convert, compress and watermark images; contact sheets (x64 only) | `magick` | ~77 MB |
 | [**diagrams**](diagrams/) | Mermaid diagrams to SVG, PNG or text, in 15 themes, with no browser | `render-mermaid`, `batch-mermaid`, `list-mermaid-themes` | ~140 MB |
 | [**browser**](browser/) | Open pages built by JavaScript, click, fill forms, read them, take screenshots and save them as PDF; the public internet only, for its server alone | Playwright MCP's `browser__browser_…` tools | ~300 MB |
+| [**fetch**](fetch/) | Read web pages, feeds and JSON as Markdown and download files into the project, for an agent whose shell has no network; the public internet only, for its server alone | `fetch__fetch`, `fetch__download` | ~120 MB |
 
 ## Install
 

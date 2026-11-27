@@ -1,0 +1,6 @@
+#!/bin/sh
+# The fetch MCP server over stdio. Every request goes through Imhotep's proxy (HTTPS_PROXY,
+# set for this server alone): the public internet only. Downloads go to its working
+# directory, the project's folder.
+d=$(dirname "$(readlink -f "$0")")/..
+exec "$d/node/bin/node" "$d/server.mjs"

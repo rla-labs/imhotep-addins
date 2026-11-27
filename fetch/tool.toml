@@ -1,0 +1,41 @@
+# fetch: web pages read as Markdown and files downloaded into the project, by a small MCP
+# server of Node's own modules (server.mjs, here). Node 22 is fixed by its sha256
+# (nodejs.org's SHASUMS256.txt); nothing else is downloaded.
+summary = "Read web pages as Markdown and download files, on the public internet only"
+version = "1.0.0"
+instructions = """
+Your shell has no network: curl, wget and the like fail. To read a web page, a feed or an
+API's JSON, use fetch__fetch; to save a file from the web into the project, fetch__download.
+Load the `fetch` skill first. They reach the public internet only."""
+# Downloads go into the project's folder.
+project = "rw"
+
+[server]
+command = ["/opt/agent/bin/fetch-mcp"]
+# Its server alone, never the agent: through Imhotep's proxy, HTTPS and HTTP to public
+# addresses only.
+network = "public"
+timeout_s = 90
+# Each URL is asked about (a URL can carry what it was given); a project allows them with
+# its exceptions (fetch__* = "allow"), or a run with "allow for this run".
+access = "ask"
+
+[package]
+setup = [["/bin/sh", "/project/setup.sh"]]
+smoke = ["/bin/sh", "/opt/addins/fetch/test/start.sh"]
+
+[[package.file]]
+url = "https://nodejs.org/dist/v22.23.4/node-v22.23.4-linux-x64.tar.xz"
+sha256 = "1805bcd35e6815559bd2eb97db438d3fdb0eb3a5e6a977b7c1badca76337e9ce"
+arch = "x86_64"
+unpack = "tar"
+strip = 1
+to = "node"
+
+[[package.file]]
+url = "https://nodejs.org/dist/v22.23.4/node-v22.23.4-linux-arm64.tar.xz"
+sha256 = "6287aa46b6c375d816e63ae66d024fbbfd70404825aabdfdf898a970871d2f4b"
+arch = "aarch64"
+unpack = "tar"
+strip = 1
+to = "node"
